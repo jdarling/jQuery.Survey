@@ -1,0 +1,49 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Your survey below</h1>
+    <form>
+      <fieldset id="survey">
+      </fieldset>
+    </form>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="handlebars.js"></script>
+    <script type="text/javascript" src="../jQuery.Survey.js"></script>
+    <script type="text/javascript" src="jquery.validate.js"></script>
+    <script type="text/javascript" src="survey.js"></script>
+    <script type="text/javascript">
+      var person = {};
+      $(document).ready(function(){
+        $('#survey').survey({
+          survey: survey,
+          data: person,
+          init: function(target){
+            target.closest('form').validate({
+              errorPlacement: function(error, element){
+                var p = element;
+                while(p && (!p.hasClass('input'))){
+                  p = p.parent();
+                }
+                error.appendTo(p||element);
+              },
+              wrapper: 'div'
+            });
+          },
+          beforeChange: function(from, to, next){
+            var target = this;
+            if(from === void 0){
+              next();
+            }else if(target.closest('form').valid()){
+              var survey = $.survey(target);
+              var data = survey.pageData();
+              var surveyData = survey.data();
+              survey.updateData(data);
+              next();
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
