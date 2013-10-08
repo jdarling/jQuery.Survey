@@ -40,4 +40,4 @@ $('#survey').survey({
 });
 ```
 
-See example\index.html for more details until better documentation is written.  The exmaple makes use of Handlebars and jQuery.Validate.
+See example\index.html for more details until better documentation is written.  The example makes use of Handlebars and jQuery.Validate.
