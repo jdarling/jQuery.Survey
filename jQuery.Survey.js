@@ -443,7 +443,7 @@
     }
     var instance = $(this).data(PLUGIN_NS);
     // CASE: action method (public method on PLUGIN class)
-    if (instance && (methodOrOptions||'').indexOf('_') !== 0 && instance[methodOrOptions] && typeof (instance[methodOrOptions]) === 'function') {
+    if (instance && typeof methodOrOptions === 'string' && (methodOrOptions||'').indexOf('_') !== 0 && instance[methodOrOptions] && typeof (instance[methodOrOptions]) === 'function') {
       return instance[methodOrOptions](Array.prototype.slice.call(arguments, 1));
       // CASE: argument is options object or empty = initialise
     } else if (typeof methodOrOptions === 'object' || !methodOrOptions) {
